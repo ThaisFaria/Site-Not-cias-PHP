@@ -1,24 +1,45 @@
 <?php
 
-$_POST['remote_addr'] = $_SERVER['REMOTE_ADDR'];
-$_POST['remote_user'] = $_SERVER['REMOTE_USER'];
-$_POST['server_name'] = $_SERVER['SERVER_NAME'];
-$_POST['server_addr'] = $_SERVER['SERVER_ADDR'];
-$_POST['teste'] = 'teste';
-echo $_SERVER['REMOTE_ADDR'];
-echo $_SERVER['REMOTE_USER'];
-echo $_SERVER['SERVER_NAME'];
-echo $_SERVER['SERVER_ADDR'];
+foreach ($_POST as $key => $value) {
+	echo $key;
+	echo " ";
+	echo $value;
+	echo "</br>";
+}
 
+if (isset($_POST['email'])) {
+	$destino = "thais_ods@hotmail.com";
+	$assunto = $_POST['assunto'];
+	$remetente = $_POST['email'];
+	$nome = $_POST['nome'];
+	$mensagem = $_POST['mensagem'];
+
+	$header1 = 'From: ' . $remetente;
+	$mensagem1 = $nome . ' enviou a mensagem abaixo: \r\n' . 'Mensagem: ' . $mensagem . '\r\n\n';
+	$mensagem1 .= 'Dados do servidor: \nREMOTE_ADDR: ' . $_POST['remote_addr'] . '\n';
+	$mensagem1 .= 'REMOTE_USER: ' . $_POST['remote_user'] . '\n';
+	$mensagem1 .= 'SERVER_NAME: ' . $_POST['server_name'] . '\n';
+	$mensagem1 .= 'SERVER_ADDR: ' . $_POST['server_addr'];
+	mail($destino, $assunto, $mensagem1, $header1);
+	echo $mensagem1;
+
+	$header2 = 'From: ' . $destino;
+	$mensagem2 = $nome . ', sua mensagem foi enviada! \r\n' . 'Mensagem: ' . $mensagem . '\r\n\n';
+	$mensagem2 .= 'Dados do servidor: \nREMOTE_ADDR: ' . $_POST['remote_addr'] . '\n';
+	$mensagem2 .= 'REMOTE_USER: ' . $_POST['remote_user'] . '\n';
+	$mensagem2 .= 'SERVER_NAME: ' . $_POST['server_name'] . '\n';
+	$mensagem2 .= 'SERVER_ADDR: ' . $_POST['server_addr'];
+	mail($remetente, $assunto, $mensagem2, $header2);
+	echo $mensagem2;
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Contato</title>
+	<title>E-mail Enviado</title>
 
 	<!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -42,29 +63,8 @@ echo $_SERVER['SERVER_ADDR'];
   			<div class="container">
 
 	    		<!-- h1 e p que já tínhamos -->
-	    		<h1>Contato</h1>
-	    		<p>Entre em contato conosco :)</p>
-
-	    		<form action="enviar_email.php" method="POST">
-	    			<div class="form-group">
-	    				<label for="nome">Nome:</label>
-	    				<input type="text" class="form-control" name="nome">
-	    			</div>
-	    			<div class="form-group">
-	    				<label for="email">Email:</label>
-	    				<input type="email" class="form-control" name="email">
-	    			</div>
-	    			<div class="form-group">
-	    				<label for="assunto">Assunto:</label>
-	    				<input type="text" class="form-control" name="assunto">
-	    			</div>
-	    			<div class="form-group">
-	    				<label for="mensagem">Mensagem:</label>
-	    				<textarea class="form-control" rows="5" name="mensagem"></textarea>
-	    			</div>
-	    			<button class="btn btn-default" type="submit">Enviar</button>
-	    			<button class="btn btn-danger" onclick="history.go(-1);">Voltar</button>
-	    		</form>
+	    		<h1>E-mail enviado!</h1>
+	    		<p>Responderemos em breve (ou não).</p>
 
 			</div><!-- fim .container dentro do jumbotron -->
 		</div>
