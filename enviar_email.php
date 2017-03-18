@@ -1,12 +1,5 @@
 <?php
 
-foreach ($_POST as $key => $value) {
-	echo $key;
-	echo " ";
-	echo $value;
-	echo "</br>";
-}
-
 if (isset($_POST['email'])) {
 	$destino = "thais_ods@hotmail.com";
 	$assunto = $_POST['assunto'];
@@ -16,21 +9,19 @@ if (isset($_POST['email'])) {
 
 	$header1 = 'From: ' . $remetente;
 	$mensagem1 = $nome . ' enviou a mensagem abaixo:' . PHP_EOL . 'Mensagem: ' . $mensagem . PHP_EOL;
-	$mensagem1 .= 'Dados do servidor:' . PHP_EOL . 'REMOTE_ADDR: ' . $_POST['REMOTE_ADDR'] . PHP_EOL;
-	$mensagem1 .= 'REMOTE_USER: ' . $_POST['REMOTE_USER'] . PHP_EOL;
-	$mensagem1 .= 'SERVER_NAME: ' . $_POST['SERVER_NAME'] . PHP_EOL;
-	$mensagem1 .= 'SERVER_ADDR: ' . $_POST['SERVER_ADDR'];
+	$mensagem1 .= 'Dados do servidor:' . PHP_EOL . 'REMOTE_ADDR: ' . $_SERVER['REMOTE_ADDR'] . PHP_EOL;
+	$mensagem1 .= 'REMOTE_USER: ' . $_SERVER['REMOTE_USER'] . PHP_EOL;
+	$mensagem1 .= 'SERVER_NAME: ' . $_SERVER['SERVER_NAME'] . PHP_EOL;
+	$mensagem1 .= 'SERVER_ADDR: ' . $_SERVER['SERVER_ADDR'];
 	mail($destino, $assunto, $mensagem1, $header1);
-	echo $mensagem1;
 
 	$header2 = 'From: ' . $destino;
 	$mensagem2 = $nome . ', sua mensagem foi enviada!' . PHP_EOL . 'Mensagem: ' . $mensagem . PHP_EOL;
-	$mensagem2 .= 'Dados do servidor:' . PHP_EOL . 'REMOTE_ADDR: ' . $_POST['REMOTE_ADDR'] . PHP_EOL;
-	$mensagem2 .= 'REMOTE_USER: ' . $_POST['REMOTE_USER'] . PHP_EOL;
-	$mensagem2 .= 'SERVER_NAME: ' . $_POST['SERVER_NAME'] . PHP_EOL;
-	$mensagem2 .= 'SERVER_ADDR: ' . $_POST['SERVER_ADDR'];
+	$mensagem2 .= 'Dados do servidor:' . PHP_EOL . 'REMOTE_ADDR: ' . $_SERVER['REMOTE_ADDR'] . PHP_EOL;
+	$mensagem2 .= 'REMOTE_USER: ' . $_SERVER['REMOTE_USER'] . PHP_EOL;
+	$mensagem2 .= 'SERVER_NAME: ' . $_SERVER['SERVER_NAME'] . PHP_EOL;
+	$mensagem2 .= 'SERVER_ADDR: ' . $_SERVER['SERVER_ADDR'];
 	mail($remetente, $assunto, $mensagem2, $header2);
-	echo $mensagem2;
 }
 ?>
 <!DOCTYPE html>
