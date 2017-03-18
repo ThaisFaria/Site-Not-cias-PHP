@@ -38,6 +38,9 @@ function echoActiveClassIfRequestMatches($requestUri) {
 				<li <?=echoActiveClassIfRequestMatches("contato")?> >
 					<a href="contato.php">Contato</a>
 				</li>
+				<li <?=echoActiveClassIfRequestMatches("login")?> >
+					<a href="login.php">Login</a>
+				</li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>

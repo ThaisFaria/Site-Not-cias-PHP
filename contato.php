@@ -1,17 +1,3 @@
-<?php
-
-$_POST['remote_addr'] = $_SERVER['REMOTE_ADDR'];
-$_POST['remote_user'] = $_SERVER['REMOTE_USER'];
-$_POST['server_name'] = $_SERVER['SERVER_NAME'];
-$_POST['server_addr'] = $_SERVER['SERVER_ADDR'];
-$_POST['teste'] = 'teste';
-echo $_SERVER['REMOTE_ADDR'];
-echo $_SERVER['REMOTE_USER'];
-echo $_SERVER['SERVER_NAME'];
-echo $_SERVER['SERVER_ADDR'];
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

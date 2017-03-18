@@ -1,45 +1,10 @@
-<?php
-
-foreach ($_POST as $key => $value) {
-	echo $key;
-	echo " ";
-	echo $value;
-	echo "</br>";
-}
-
-if (isset($_POST['email'])) {
-	$destino = "thais_ods@hotmail.com";
-	$assunto = $_POST['assunto'];
-	$remetente = $_POST['email'];
-	$nome = $_POST['nome'];
-	$mensagem = $_POST['mensagem'];
-
-	$header1 = 'From: ' . $remetente;
-	$mensagem1 = $nome . ' enviou a mensagem abaixo:' . PHP_EOL . 'Mensagem: ' . $mensagem . PHP_EOL;
-	$mensagem1 .= 'Dados do servidor:' . PHP_EOL . 'REMOTE_ADDR: ' . $_POST['REMOTE_ADDR'] . PHP_EOL;
-	$mensagem1 .= 'REMOTE_USER: ' . $_POST['REMOTE_USER'] . PHP_EOL;
-	$mensagem1 .= 'SERVER_NAME: ' . $_POST['SERVER_NAME'] . PHP_EOL;
-	$mensagem1 .= 'SERVER_ADDR: ' . $_POST['SERVER_ADDR'];
-	mail($destino, $assunto, $mensagem1, $header1);
-	echo $mensagem1;
-
-	$header2 = 'From: ' . $destino;
-	$mensagem2 = $nome . ', sua mensagem foi enviada!' . PHP_EOL . 'Mensagem: ' . $mensagem . PHP_EOL;
-	$mensagem2 .= 'Dados do servidor:' . PHP_EOL . 'REMOTE_ADDR: ' . $_POST['REMOTE_ADDR'] . PHP_EOL;
-	$mensagem2 .= 'REMOTE_USER: ' . $_POST['REMOTE_USER'] . PHP_EOL;
-	$mensagem2 .= 'SERVER_NAME: ' . $_POST['SERVER_NAME'] . PHP_EOL;
-	$mensagem2 .= 'SERVER_ADDR: ' . $_POST['SERVER_ADDR'];
-	mail($remetente, $assunto, $mensagem2, $header2);
-	echo $mensagem2;
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>E-mail Enviado</title>
+	<title>Login</title>
 
 	<!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -63,8 +28,20 @@ if (isset($_POST['email'])) {
   			<div class="container">
 
 	    		<!-- h1 e p que já tínhamos -->
-	    		<h1>E-mail enviado!</h1>
-	    		<p>Responderemos em breve (ou não).</p>
+	    		<h1>Login</h1>
+
+	    		<form action="autentica.php" method="POST" class="col-lg-4 col-lg-offset-4">
+	    			<div class="form-group">
+	    				<label for="login">Login:</label>
+	    				<input type="text" class="form-control" name="login">
+	    			</div>
+	    			<div class="form-group">
+	    				<label for="senha">Senha:</label>
+	    				<input type="text" class="form-control" name="senha">
+	    			</div>
+	    			<button class="btn btn-default" type="submit">Enviar</button>
+	    			<button class="btn btn-danger" onclick="history.go(-1);">Voltar</button>
+	    		</form>
 
 			</div><!-- fim .container dentro do jumbotron -->
 		</div>
