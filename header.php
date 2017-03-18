@@ -22,7 +22,7 @@ function echoActiveClassIfRequestMatches($requestUri) {
 			<a class="navbar-brand" href="index.php">Notícias da Hora</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav navbar-left">
 				<li <?=echoActiveClassIfRequestMatches("index")?> >
 					<a href="index.php">Destaques</a>
 				</li>
@@ -42,6 +42,16 @@ function echoActiveClassIfRequestMatches($requestUri) {
 					<a href="login.php">Login</a>
 				</li>
 			</ul>
+			<?php if (!empty($_SESSION['usuario'])): ?>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="bem-vindo.php"><?=$_SESSION['nome']?></a>
+					</li>
+				</ul>
+			<?php endif;?>
 		</div><!--/.nav-collapse -->
+		<div>
+
+		</div>
 	</div>
 </nav>

@@ -8,7 +8,6 @@ class Usuario {
 	public function __construct(string $login, string $senha) {
 		$this->login = $login;
 		$this->senha = $senha;
-		$this->nome = $nome;
 	}
 
 	public function __get($atributo) {
@@ -19,11 +18,13 @@ class Usuario {
 		$this->$atributo = $valor;
 	}
 
-	public function entrar($vetor) {
-		return 1; //retornar verdadeiro ou falso
-	}
-
-	public function sair() {
-		return 1; //retornar verdadeiro ou falso
+	public function entrar(array $vetor) {
+		if (strcmp($vetor['login'], $this->login) == 0) {
+			if (strcmp($vetor['senha'], $this->senha) == 0) {
+				return 1;
+			}
+		}
+		throw new Exception("Login ou senha incorretos");
+		return 0;
 	}
 }
