@@ -44,7 +44,7 @@ function echoActiveClassIfRequestMatches($requestUri) {
 			</ul>
 			<?php if (!empty($_SESSION['usuario'])): ?>
 				<ul class="nav navbar-nav navbar-right">
-					<li>
+					<li <?=echoActiveClassIfRequestMatches("bem-vindo")?> >
 						<a href="bem-vindo.php"><?=$_SESSION['nome']?></a>
 					</li>
 				</ul>

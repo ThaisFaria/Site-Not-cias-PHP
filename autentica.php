@@ -1,6 +1,5 @@
 <?php
 include 'Usuario.php';
-
 $usuario = new Usuario('thais', '123456');
 $usuario->nome = 'Thais Faria';
 
@@ -18,6 +17,8 @@ try {
 	}
 } catch (Exception $e) {
 	session_start();
+	unset($_SESSION['usuario']);
+	unset($_SESSION['nome']);
 	$_SESSION['mensagem'] = $e->getMessage();
 	header("Location: ./login.php");
 	exit();
